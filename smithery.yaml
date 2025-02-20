@@ -1,0 +1,41 @@
+# Smithery configuration file: https://smithery.ai/docs/config#smitheryyaml
+
+startCommand:
+  type: stdio
+  configSchema:
+    # JSON Schema defining the configuration options for the MCP.
+    type: object
+    required:
+      - authType
+      - openmetadataHost
+    properties:
+      authType:
+        type: string
+        description: The authentication method to use.
+      openmetadataHost:
+        type: string
+        description: The host URL for the OpenMetadata server.
+      jwtToken:
+        type: string
+        default: ""
+        description: The JWT token for authentication.
+      username:
+        type: string
+        default: ""
+        description: The username for basic authentication.
+      password:
+        type: string
+        default: ""
+        description: The password for basic authentication.
+      port:
+        type: number
+        default: 8000
+        description: The port to listen on for SSE.
+      transport:
+        type: string
+        default: stdio
+        description: The transport type (stdio/sse).
+  commandFunction:
+    # A function that produces the CLI command to start the MCP on stdio.
+    |-
+    (config) => { const env = { OPENMETADATA_HOST: config.openmetadataHost }; if (config.authType === 'token') { env.OPENMETADATA_JWT_TOKEN = config.jwtToken; } else if (config.authType === 'basic') { env.OPENMETADATA_USERNAME = config.username; env.OPENMETADATA_PASSWORD = config.password; } return { command: 'python', args: ['src/server.py', '--port', config.port.toString(), '--transport', config.transport], env }; }

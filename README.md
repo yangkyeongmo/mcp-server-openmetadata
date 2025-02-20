@@ -1,5 +1,7 @@
 # mcp-server-openmetadata
 
+[![smithery badge](https://smithery.ai/badge/@yangkyeongmo/mcp-server-openmetadata)](https://smithery.ai/server/@yangkyeongmo/mcp-server-openmetadata)
+
 A Model Context Protocol (MCP) server implementation for OpenMetadata, enabling seamless integration with MCP clients. This project provides a standardized way to interact with OpenMetadata through the Model Context Protocol.
 
 ## About
@@ -94,6 +96,14 @@ This project implements a [Model Context Protocol](https://modelcontextprotocol.
 | Get Entity Usage by ID | `/api/v1/usage/{entity}/{id}` | ❌ |
 
 ## Setup
+
+### Installing via Smithery
+
+To install OpenMetadata MCP Server for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@yangkyeongmo/mcp-server-openmetadata):
+
+```bash
+npx -y @smithery/cli install @yangkyeongmo/mcp-server-openmetadata --client claude
+```
 
 ### Environment Variables
 
