@@ -159,7 +159,7 @@ async def update_table(
         List of MCP content types containing updated table details
     """
     client = get_client()
-    result = client.put(f"tables/{table_id}", json_data=table_data)
+    result = client.patch(f"tables/{table_id}", json_data=table_data)
 
     # Add UI URL for web interface integration
     table_fqn = result.get("fullyQualifiedName", "")
