@@ -130,6 +130,10 @@ class OpenMetadataClient:
         """Make PUT request to OpenMetadata API."""
         return self._make_request("PUT", endpoint, json_data=json_data)
 
+    def patch(self, endpoint: str, json_data: Dict[str, Any]) -> Dict[str, Any]:
+        """Make PATCH request to OpenMetadata API."""
+        return self._make_request("PATCH", endpoint, json_data=json_data)
+
     def delete(self, endpoint: str, params: Optional[Dict[str, Any]] = None) -> None:
         """Make DELETE request to OpenMetadata API."""
         self._make_request("DELETE", endpoint, params=params)
