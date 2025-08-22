@@ -147,19 +147,21 @@ async def create_table(
 
 async def update_table(
     table_id: str,
-    table_data: Dict[str, Any],
+    operations: List[Dict[str, Any]],
 ) -> List[Union[types.TextContent, types.ImageContent, types.EmbeddedResource]]:
-    """Update an existing table.
+    """Update an existing table using JSON Patch operations.
 
     Args:
         table_id: ID of the table to update
-        table_data: Updated table data
+        operations: JSON Patch operations. Commonly supported: add, remove, replace
+                   Example: [{"op": "add", "path": "/description", "value": "New description"}]
 
     Returns:
         List of MCP content types containing updated table details
     """
     client = get_client()
-    result = client.patch(f"tables/{table_id}", json_data=table_data)
+
+    result = client.patch(f"tables/{table_id}", json_data=operations)
 
     # Add UI URL for web interface integration
     table_fqn = result.get("fullyQualifiedName", "")
