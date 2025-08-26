@@ -92,14 +92,16 @@ class OpenMetadataClient:
         endpoint: str,
         params: Optional[Dict[str, Any]] = None,
         json_data: Optional[Dict[str, Any]] = None,
+        headers: Optional[Dict[str, str]] = None,
     ) -> Dict[str, Any]:
         """Make HTTP request to OpenMetadata API.
 
         Args:
-            method: HTTP method (GET, POST, PUT, DELETE)
+            method: HTTP method (GET, POST, PUT, DELETE, PATCH)
             endpoint: API endpoint path
             params: Query parameters
-            json_data: JSON payload for POST/PUT requests
+            json_data: JSON payload for POST/PUT/PATCH requests
+            headers: Additional HTTP headers
 
         Returns:
             API response as dictionary
@@ -110,7 +112,20 @@ class OpenMetadataClient:
         url = urljoin(self.base_url, endpoint)
 
         try:
-            response = self.session.request(method=method, url=url, params=params, json=json_data)
+            # Start with provided headers or empty dict
+            request_headers = dict(headers) if headers else {}
+
+            # Set Content-Type if not already provided and we have JSON data
+            if json_data is not None and "Content-Type" not in request_headers:
+                request_headers["Content-Type"] = "application/json"
+
+            response = self.session.request(
+                method=method,
+                url=url,
+                params=params,
+                json=json_data,
+                headers=request_headers
+            )
             response.raise_for_status()
             return response.json() if response.content else {}
         except httpx.HTTPStatusError as e:
@@ -131,8 +146,9 @@ class OpenMetadataClient:
         return self._make_request("PUT", endpoint, json_data=json_data)
 
     def patch(self, endpoint: str, json_data: Dict[str, Any]) -> Dict[str, Any]:
-        """Make PATCH request to OpenMetadata API."""
-        return self._make_request("PATCH", endpoint, json_data=json_data)
+        """Make PATCH request to OpenMetadata API with JSON Patch headers."""
+        headers = {"Content-Type": "application/json-patch+json"}
+        return self._make_request("PATCH", endpoint, json_data=json_data, headers=headers)
 
     def delete(self, endpoint: str, params: Optional[Dict[str, Any]] = None) -> None:
         """Make DELETE request to OpenMetadata API."""
