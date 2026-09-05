@@ -2,7 +2,7 @@
 
 # mcp-server-openmetadata
 
-[![smithery badge](https://smithery.ai/badge/@yangkyeongmo/mcp-server-openmetadata)](https://smithery.ai/server/@yangkyeongmo/mcp-server-openmetadata)
+[![LightNow capabilities](https://lightnow.ai/badge/io.github.yangkyeongmo/mcp-server-openmetadata)](https://lightnow.ai/servers/io.github.yangkyeongmo/mcp-server-openmetadata)
 
 A Model Context Protocol (MCP) server implementation for OpenMetadata, enabling seamless integration with MCP clients. This project provides a standardized way to interact with OpenMetadata through the Model Context Protocol.
 
