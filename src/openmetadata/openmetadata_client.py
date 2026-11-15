@@ -120,11 +120,7 @@ class OpenMetadataClient:
                 request_headers["Content-Type"] = "application/json"
 
             response = self.session.request(
-                method=method,
-                url=url,
-                params=params,
-                json=json_data,
-                headers=request_headers
+                method=method, url=url, params=params, json=json_data, headers=request_headers
             )
             response.raise_for_status()
             return response.json() if response.content else {}
