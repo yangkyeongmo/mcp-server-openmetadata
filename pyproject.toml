@@ -1,7 +1,7 @@
 [project]
 name = "mcp-server-openmetadata"
-version = "0.2.4"
-description = "Model Context Protocol (MCP) server for OpenMetadata"
+version = "0.2.5"
+description = "DEPRECATED — MCP server for OpenMetadata. Use the official built-in MCP in OpenMetadata 1.8+ instead."
 authors = [{ name = "Gyeongmo Yang", email = "me@yanggyeongmo.com" }]
 dependencies = [
     "httpx>=0.24.1",
@@ -15,7 +15,7 @@ requires-python = ">=3.10"
 readme = "README.md"
 license = { text = "MIT" }
 classifiers = [
-    "Development Status :: 3 - Alpha",
+    "Development Status :: 7 - Inactive",
     "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3",
