@@ -3,6 +3,7 @@ name: Publish Python Package
 on:
   release:
     types: [created]
+  workflow_dispatch:
 
 jobs:
   publish:
@@ -27,10 +28,3 @@ jobs:
 
       - name: Publish package to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          user: __token__
-          password: ${{ secrets.PYPI_API_TOKEN }}
-          # Alternatively, if using trusted publishing (recommended):
-          # See: https://docs.pypi.org/trusted-publishers/
-          # attestation-check-repository: yangkyeongmo/mcp-server-apache-airflow
-          # attestation-check-workflow: publish.yml # Optional: if your workflow file is named differently
