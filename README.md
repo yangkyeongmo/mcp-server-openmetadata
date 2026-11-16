@@ -1,3 +1,12 @@
+> **Deprecated:** This project is no longer maintained.
+>
+> OpenMetadata 1.8.0 and later (released 2025-06-24) ships an official MCP server built into the OpenMetadata server. It runs at `{OMURL}/mcp` with OAuth/JWT and RBAC. Please use that instead:
+>
+> - Docs: https://docs.open-metadata.org/latest/how-to-guides/mcp
+> - Source: https://github.com/open-metadata/OpenMetadata/tree/main/openmetadata-mcp
+>
+> This wrapper may only be useful for OpenMetadata versions below 1.8.
+
 [![MseeP.ai Security Assessment Badge](https://mseep.net/pr/yangkyeongmo-mcp-server-openmetadata-badge.png)](https://mseep.ai/app/yangkyeongmo-mcp-server-openmetadata)
 
 # mcp-server-openmetadata
